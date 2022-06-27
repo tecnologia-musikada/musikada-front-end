@@ -19,9 +19,17 @@
 
         <b-navbar-nav v-if="isLoggedIn" class="ml-auto" text-variant="white">
           <div>
-            <a @click="logout">Logout</a>
+            <div class="user">
+              <b-nav-item-dropdown right>
+                <template #button-content>
+                  <em> Olá, {{ User }}</em>
+                </template>
+                <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
+                <a @click="logout">Logout</a>
+              </b-nav-item-dropdown>
+            </div>        
           </div>
-        </b-navbar-nav>
+        </b-navbar-nav> 
 
         <b-navbar-nav v-else class="ml-auto" text-variant="white">
           <div>
@@ -89,6 +97,7 @@
 <script>
 import Modal from "@/views/Modal.vue"
 import SingerModel from '../../model/SingerModel'
+import { mapGetters } from "vuex";
 
 export default {
   name: "Header",
@@ -96,6 +105,7 @@ export default {
     isLoggedIn: function() {
       return this.$store.getters.isAuthenticated;
     },
+    ...mapGetters({ Posts: "StatePosts", User: "StateUser" }),
   },
   components: 
   {

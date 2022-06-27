@@ -25,7 +25,7 @@ const actions = {
     await commit("setUser", user.get("username"));
   },
 
-  async CreatePost({ dispatch }, post) {
+  /* async CreatePost({ dispatch }, post) {
     await axios.post("post", post);
     return await dispatch("GetPosts");
   },
@@ -33,7 +33,7 @@ const actions = {
   async GetPosts({ commit }) {
     let response = await axios.get("posts");
     commit("setPosts", response.data);
-  },
+  }, */
 
   async LogOut({ commit }) {
     let user = null;
