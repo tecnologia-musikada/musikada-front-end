@@ -10,7 +10,7 @@
 
           <!-- Cadastro -->
         <b-tab title="Cadastro" v-model="cad">
-          <Cadastro />
+          <Register />
         </b-tab>
       </b-tabs>
     </b-card>
@@ -19,12 +19,12 @@
 
 <script>
 
-import Cadastro from "../components/Register/Cadastro.vue"
+import Register from "../components/Registers/Register.vue"
 import Login from "../components/Login/Login.vue"
   export default {
     components:
     {
-        Cadastro, Login
+        Register, Login
     },
 
     data() {

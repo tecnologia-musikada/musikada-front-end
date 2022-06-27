@@ -21,8 +21,7 @@
         <!-- <b-navbar-nav v-if="logado == false" class="ml-auto" text-variant="white"> -->
           <b-navbar-nav v-if="isLoggedIn" class="ml-auto" text-variant="white">
           <div>
-
-            Logado
+            <a @click="logout">Logout</a>
         
           </div>
         </b-navbar-nav>
@@ -122,6 +121,11 @@ export default {
     gotToPosts(){
       this.$router.push({name:"Posts"});
     },
+
+    async logout (){
+        await this.$store.dispatch('LogOut')
+        this.$router.push('/')
+      }
   },
 
 };
