@@ -12,6 +12,7 @@ import axios from "axios";
 
 axios.defaults.withCredentials = false
 axios.defaults.baseURL = 'https://gabbyblog.herokuapp.com/';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 import VueCarousel from 'vue-carousel';
 Vue.use(VueCarousel);
