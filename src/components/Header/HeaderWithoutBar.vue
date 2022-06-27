@@ -24,7 +24,7 @@
             <a @click="logout">Logout</a>
         
           </div>
-        </b-navbar-nav>
+        </b-navbar-nav> 
 
 
 

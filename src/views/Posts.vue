@@ -5,7 +5,7 @@
       <myPosts/>
     </div>
     <!-- <TopVideos /> --> 
-    <MusikadaFooter /> 
+    <MusikadaFooter />  
   </div>
 </template>
 

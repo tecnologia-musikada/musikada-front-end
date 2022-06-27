@@ -18,17 +18,33 @@
           <b-nav-item></b-nav-item>
         </b-navbar-nav>
 
+        <b-navbar-nav v-if="isLoggedIn" class="ml-auto" text-variant="white">
+          <div>
+            <a @click="logout">Logout</a>
+          </div>
+        </b-navbar-nav>
+
+        <b-navbar-nav v-else class="ml-auto" text-variant="white">
+          <div>
+            <b-nav-item @click="modalShow = !modalShow">Entrar</b-nav-item>
+          <b-modal v-model="modalShow">
+            <Modal />
+          </b-modal>
+          </div>
+        </b-navbar-nav>
+
 
         
-        <b-navbar-nav v-if="logado == false" class="ml-auto" text-variant="white">
+       <!--  <b-navbar-nav v-if="logado == false" class="ml-auto" text-variant="white">
           <div>
             <b-nav-item @click="modalShow = !modalShow">Entrar</b-nav-item>
            <b-modal v-model="modalShow">
              <Modal />
            </b-modal>
           </div>
-        </b-navbar-nav>
-        <b-navbar-nav v-else-if="logado == true" class="ml-auto" text-variant="white">
+        </b-navbar-nav> -->
+
+        <!-- <b-navbar-nav v-else-if="logado == true" class="ml-auto" text-variant="white">
           <div class="avatar-bell-user" id="log">
             <div class="bell" style="font-size: 2rem">
               <b-icon icon="bell-fill" class="p-1"></b-icon>
@@ -43,7 +59,6 @@
             </div>
             <div class="user">
               <b-nav-item-dropdown right>
-                <!-- Using 'button-content' slot -->
                 <template #button-content>
                   <em>Hasman</em>
                 </template>
@@ -52,7 +67,7 @@
               </b-nav-item-dropdown>
             </div>
           </div>
-        </b-navbar-nav>
+        </b-navbar-nav> -->
       </b-collapse>
     </b-navbar>
     <div id="search">
@@ -79,6 +94,11 @@ import ItemsModel from '../../model/ItemsModel'
 
 export default {
   name: "Header",
+  computed: {
+    isLoggedIn: function() {
+      return this.$store.getters.isAuthenticated;
+    },
+  },
   components: 
   {
     Modal
@@ -128,6 +148,11 @@ export default {
     },
     gotToPosts(){
       this.$router.push({name:"Posts"});
+    },
+
+    async logout (){
+      await this.$store.dispatch('LogOut')
+      this.$router.push('/')
     },
     
     async buscarFilter(){
