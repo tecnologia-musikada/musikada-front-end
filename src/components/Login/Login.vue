@@ -5,7 +5,7 @@
         <div>
           <label for="email">Email:</label>
           <!-- <div class="email"> -->
-            <input class="email" type="text" name="email" v-model="form.email" />
+          <input class="email" type="text" name="email" v-model="form.email" />
           <!-- </div> -->
         </div>
         <div>
@@ -43,8 +43,14 @@ export default {
       const User = new FormData();
       User.append("email", this.form.email);
       User.append("password", this.form.password);
+
+      console.log(this.form.email)
+      console.log(this.form.password)
+      
+
       try {
           await this.LogIn(User);
+          console.log("teste")
           this.$router.push("/posts");
           this.showError = false
       } catch (error) {

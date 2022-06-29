@@ -1,0 +1,385 @@
+---
+openapi: 3.0.3
+info:
+  title: musikada-user API
+  version: com.sistema.microservice.musikada
+tags:
+- name: Módulo responsável em lidar com login dos usuários
+- name: Módulo responsável em manipular os usuários do Musikada no DB
+  description: Este módulo contempla o conjunto de endpoints exclusivos para manipulação
+    os usuários musikada(Os seus EndPoints se comunicam com o Banco de dados)
+paths:
+  /users:
+    get:
+      tags:
+      - Módulo responsável em manipular os usuários do Musikada no DB
+      summary: Buscar todos os usuários no sistema musikada
+      responses:
+        "200":
+          description: Retorna uma lista de usuários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserResponseTO'
+    post:
+      tags:
+      - Módulo responsável em manipular os usuários do Musikada no DB
+      summary: Cria um novo usuário no sistema musikada
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUserRequestTO'
+      responses:
+        "200":
+          description: OK
+  /users/forgetPassword/{email}:
+    post:
+      tags:
+      - Módulo responsável em lidar com login dos usuários
+      summary: Permite ao usuário solicitar a função esquecer senha ao sistema
+      parameters:
+      - name: email
+        in: path
+        description: Um email válido do usuário existente no sistema
+        required: true
+        schema:
+          type: string
+        example: exemplo@gmail.com
+      responses:
+        "200":
+          description: Retorna um valor boolean
+          content:
+            application/json: {}
+  /users/login:
+    post:
+      tags:
+      - Módulo responsável em lidar com login dos usuários
+      summary: Permite ao usuário musikada realizar login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginRequestTO'
+      responses:
+        "200":
+          description: Retorna um valor boolean
+          content:
+            application/json: {}
+  /users/update-login-credentials:
+    put:
+      tags:
+      - Módulo responsável em lidar com login dos usuários
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLoginCredentialsUpdatingRequestTO'
+      responses:
+        "200":
+          description: OK
+  /users/{userId}:
+    get:
+      tags:
+      - Módulo responsável em manipular os usuários do Musikada no DB
+      summary: Busca um único usuário no sistema musikada
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Retorna um usuários
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  firstName:
+                    type: string
+                  secondName:
+                    type: string
+                  lastName:
+                    type: string
+                  celPhone:
+                    $ref: '#/components/schemas/CelPhoneTO'
+                  email:
+                    type: string
+                  adresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AdressTO'
+                  documentType:
+                    type: string
+                  documentNumber:
+                    type: string
+    put:
+      tags:
+      - Módulo responsável em manipular os usuários do Musikada no DB
+      summary: Atualiza as informações de um novo usuário no sistema musikada
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequestTO'
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - Módulo responsável em manipular os usuários do Musikada no DB
+      summary: Exclui um usuário no sistema musikada
+      parameters:
+      - name: userId
+        in: path
+        description: Identificador de um usuário no sistema
+        required: true
+        schema:
+          type: string
+        example: f25ba892-95e0-11ea-bb37-0242ac130002
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    AdressTO:
+      required:
+      - street
+      - reference1
+      - city
+      - provincyOrState
+      - country
+      type: object
+      properties:
+        street:
+          description: Rua do usuário
+          minLength: 1
+          type: string
+          example: Castanheira
+          nullable: false
+        number:
+          description: Número da casa
+          type: string
+          example: "1055"
+        zipCode:
+          description: Caixa postal
+          type: string
+          example: "93010004"
+        reference1:
+          description: Representa algum local próximo da rua ou casa que é de fácil
+            localização
+          minLength: 1
+          type: string
+          example: Banco BIC
+          nullable: false
+        reference2:
+          description: Representa o segundo local próximo da rua ou casa que é de
+            fácil localização
+          type: string
+          example: Próximo a esquadra policial
+        city:
+          description: Representa uma cidade ou município válido
+          minLength: 1
+          type: string
+          example: Namibe
+          nullable: false
+        provincyOrState:
+          description: Representa uma província ou estado válido
+          minLength: 1
+          type: string
+          example: Namibe
+          nullable: false
+        country:
+          description: Representa país
+          minLength: 1
+          type: string
+          example: Angola
+          nullable: false
+    CelPhoneTO:
+      required:
+      - phone1
+      type: object
+      properties:
+        phone1:
+          description: Representa o telefone principal do usuário
+          minLength: 1
+          type: string
+          example: +555199876532
+          nullable: false
+        phone2:
+          description: Representa o telefone secundário do usuário
+          type: string
+          example: +555199876532
+        phone3:
+          description: Representa o telefone secundário do usuário
+          type: string
+          example: +555199876532
+    NewUserRequestTO:
+      required:
+      - firstName
+      - secondName
+      - lastName
+      - email
+      - password
+      type: object
+      properties:
+        firstName:
+          description: Primeiro nome do usuário
+          minLength: 1
+          type: string
+          example: João
+          nullable: false
+        secondName:
+          description: Segundo nome do usuário
+          minLength: 1
+          type: string
+          example: Armando
+          nullable: false
+        lastName:
+          description: Sobre-nome do usuário
+          minLength: 1
+          type: string
+          example: José
+          nullable: false
+        celPhone:
+          $ref: '#/components/schemas/CelPhoneTO'
+        email:
+          description: Representa um email válido do usuário
+          minLength: 1
+          type: string
+          example: exemplo@gmail.com
+          nullable: false
+        adresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdressTO'
+        documentType:
+          description: Representa o tipo de documento usado
+          type: string
+          example: BI
+        documentNumber:
+          description: Representa o numero de documento valido
+          type: string
+          example: B9874C32145
+        password:
+          description: Representa a palavra chave de um usuário ao sistema
+          minLength: 1
+          type: string
+          example: Password@#12
+          nullable: false
+    UpdateUserRequestTO:
+      required:
+      - firstName
+      - secondName
+      - lastName
+      type: object
+      properties:
+        firstName:
+          description: Primeiro nome do usuário
+          type: string
+          example: João
+        secondName:
+          description: Segundo nome do usuário
+          type: string
+          example: Armando
+        lastName:
+          description: Sobre-nome do usuário
+          type: string
+          example: José
+        celPhone:
+          $ref: '#/components/schemas/CelPhoneTO'
+        email:
+          description: Representa um email válido do usuário
+          type: string
+          example: exemplo@gmail.com
+        adresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdressTO'
+        documentType:
+          description: Representa o tipo de documento usado
+          type: string
+          example: BI
+        documentNumber:
+          description: Representa o numero de documento valido
+          type: string
+          example: B9874C32145
+    UserLoginCredentialsUpdatingRequestTO:
+      required:
+      - email
+      - newPassword
+      - confirmPassword
+      type: object
+      properties:
+        email:
+          description: Representa um email válido de um usuário cadastrado no sistema
+          minLength: 1
+          type: string
+          example: exemplo@gmail.com
+          nullable: false
+        newPassword:
+          description: 'É o novo password do usuário cadastrado no sistema '
+          minLength: 1
+          type: string
+          example: Password@#12
+          nullable: false
+        confirmPassword:
+          description: 'É a confirmação do novo password do usuário cadastrado no
+            sistema '
+          minLength: 1
+          type: string
+          example: Password@#12
+          nullable: false
+    UserLoginRequestTO:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          description: Representa um email válido de um usuário cadastrado no sistema
+          minLength: 1
+          type: string
+          example: exemplo@gmail.com
+          nullable: false
+        password:
+          description: 'É o password do usuário cadastrado no sistema '
+          minLength: 1
+          type: string
+          example: Password@#12
+          nullable: false
+    UserResponseTO:
+      type: object
+      properties:
+        userId:
+          type: string
+        firstName:
+          type: string
+        secondName:
+          type: string
+        lastName:
+          type: string
+        celPhone:
+          $ref: '#/components/schemas/CelPhoneTO'
+        email:
+          type: string
+        adresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdressTO'
+        documentType:
+          type: string
+        documentNumber:
+          type: string

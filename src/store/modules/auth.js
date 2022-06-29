@@ -3,18 +3,26 @@ import axios from "axios";
 const state = {
   user: null,
   posts: null,
+
+  
 };
 
+
+/* console.log(state.user) */
 const getters = { 
   isAuthenticated: (state) => !!state.user,
   StatePosts: (state) => state.posts,
   StateUser: (state) => state.user,
+  
 };
 
 const actions = {
   async Register({dispatch}, form) {
     await axios.post('users', form)
     let UserForm = new FormData()
+    UserForm.append('firstName', form.firstName)
+    UserForm.append('secondName', form.secondName)
+    UserForm.append('lastName', form.lastName)
     UserForm.append('email', form.email)
     UserForm.append('password', form.password)
     await dispatch('LogIn', UserForm)
@@ -23,6 +31,8 @@ const actions = {
   async LogIn({commit}, user) {
     await axios.post("users/login", user);
     await commit("setUser", user.get("email"));
+    /* await commit("setUser", user.get("password")); */
+    /* console.log(state.user) */
   },
 
   /* async CreatePost({ dispatch }, post) {
@@ -44,6 +54,7 @@ const actions = {
 const mutations = {
   setUser(state, email) {
     state.user = email;
+    /* state.user = password; */
   },
 
   setPosts(state, posts) {

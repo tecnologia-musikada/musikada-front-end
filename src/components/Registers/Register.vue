@@ -3,12 +3,20 @@
     <div>
       <form @submit.prevent="submit">
         <div>
-          <label for="username">Username:</label>
-          <input type="text" name="username" v-model="form.username" />
+          <label for="firstName">First Name:</label>
+          <input type="text" name="firstName" v-model="form.firstName" />
         </div>
         <div>
-          <label for="full_name">Full Name:</label>
-          <input type="text" name="full_name" v-model="form.full_name" />
+          <label for="secondName">Second Name:</label>
+          <input type="text" name="secondName" v-model="form.secondName" />
+        </div>
+        <div>
+          <label for="lastName">Last Name:</label>
+          <input type="text" name="lastName" v-model="form.lastName" />
+        </div>
+        <div>
+          <label for="full_name">Email:</label>
+          <input type="text" name="email" v-model="form.email" />
         </div>
         <div>
           <label for="password">Password:</label>
@@ -32,8 +40,10 @@ export default {
   data() {
     return {
       form: {
-        username: "",
-        full_name: "",
+        email: "",
+        firstName: "",
+        secondName: "",
+        lastName: "",
         password: "",
       },
       showError: false

@@ -1,0 +1,377 @@
+---
+openapi: 3.0.3
+info:
+  title: musikada-event API
+  version: 0.0.1-SNAPSHOT
+tags:
+- name: Módulo responsável em lidar com os eventos do musikada
+paths:
+  /events:
+    get:
+      tags:
+      - Módulo responsável em lidar com os eventos do musikada
+      summary: Busca todos os eventos no sistema
+      responses:
+        "200":
+          description: Retorna uma lista de eventos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventResponseTO'
+    post:
+      tags:
+      - Módulo responsável em lidar com os eventos do musikada
+      summary: Cria um novo evento no sistema musikada
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewEventRequestTO'
+      responses:
+        "200":
+          description: OK
+  /events/{eventId}:
+    get:
+      tags:
+      - Módulo responsável em lidar com os eventos do musikada
+      summary: Busca um único evento no sistema musikada
+      parameters:
+      - name: eventId
+        in: path
+        description: Identificador de um evento no sistema
+        required: true
+        schema:
+          type: string
+        example: 61dcaaec50363056a9ca9811
+      responses:
+        "200":
+          description: Retorna um evento
+          content:
+            application/json:
+              schema:
+                required:
+                - eventTitle
+                - eventDescription
+                - eventOrganizers
+                type: object
+                properties:
+                  eventId:
+                    description: É o identificador de um  evento
+                    type: string
+                    example: 61dcaaec50363056a9ca9811
+                  eventTitle:
+                    description: Representa o título do evento
+                    type: string
+                    example: noite da farra
+                  eventDescription:
+                    description: Representa a descrição do evento
+                    type: string
+                    example: Festa alusivo aos que gostam de farra
+                  eventOrganizers:
+                    description: Representa o organizador do evento
+                    type: string
+                    example: os compadres
+                  eventPrice:
+                    description: Preço do evento
+                    type: string
+                    example: "2000"
+                  eventStartDate:
+                    description: Data de início do evento
+                    type: string
+                    example: 01/03/2022 00:00:00
+                  eventFinishDate:
+                    description: Data de término do evento
+                    type: string
+                    example: 02/03/2022 00:00:00
+                  eventContact:
+                    allOf:
+                    - $ref: '#/components/schemas/CelphoneTO'
+                    - description: São os contactos dos organizadores do evento
+                  eventAdress:
+                    allOf:
+                    - $ref: '#/components/schemas/AdressTO'
+                    - description: Define o enedereço aonde vai ocorrer o evento
+                  eventOwner:
+                    description: É o proprietário do evento
+                    type: string
+                    example: Kangamba
+    put:
+      tags:
+      - Módulo responsável em lidar com os eventos do musikada
+      summary: Atualiza um event no sistema musikada
+      parameters:
+      - name: eventId
+        in: path
+        description: Identificador de um evento no sistema
+        required: true
+        schema:
+          type: string
+        example: 61dcaaec50363056a9ca9811
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEventRequestTO'
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+      - Módulo responsável em lidar com os eventos do musikada
+      summary: Exclui um event no sistema musikada
+      parameters:
+      - name: eventId
+        in: path
+        description: Identificador de um evento no sistema
+        required: true
+        schema:
+          type: string
+        example: 61dcaaec50363056a9ca9811
+      responses:
+        "200":
+          description: OK
+components:
+  schemas:
+    AdressTO:
+      required:
+      - street
+      - reference1
+      - city
+      - provincyOrState
+      - country
+      type: object
+      properties:
+        street:
+          description: Rua do usuário
+          minLength: 1
+          type: string
+          example: Castanheira
+          nullable: false
+        number:
+          description: Número da casa
+          type: string
+          example: "1055"
+        zipCode:
+          description: Caixa postal
+          type: string
+          example: "93010004"
+        reference1:
+          description: Representa algum local próximo da rua ou casa que é de fácil
+            localização
+          minLength: 1
+          type: string
+          example: Banco BIC
+          nullable: false
+        reference2:
+          description: Representa o segundo local próximo da rua ou casa que é de
+            fácil localização
+          type: string
+          example: Próximo a esquadra policial
+        city:
+          description: Representa uma cidade ou município válido
+          minLength: 1
+          type: string
+          example: Namibe
+          nullable: false
+        provincyOrState:
+          description: Representa uma província ou estado válido
+          minLength: 1
+          type: string
+          example: Namibe
+          nullable: false
+        country:
+          description: Representa país
+          minLength: 1
+          type: string
+          example: Angola
+          nullable: false
+    CelphoneTO:
+      required:
+      - phone1
+      type: object
+      properties:
+        phone1:
+          description: Representa o telefone principal do organizador do evento
+          minLength: 1
+          type: string
+          example: +555199876532
+          nullable: false
+        phone2:
+          description: Representa o telefone secundário do organizador do evento
+          type: string
+          example: +555199876532
+        phone3:
+          description: Representa o telefone secundário do organizador do evento
+          type: string
+          example: +555199876532
+    EventResponseTO:
+      required:
+      - eventTitle
+      - eventDescription
+      - eventOrganizers
+      type: object
+      properties:
+        eventId:
+          description: É o identificador de um  evento
+          type: string
+          example: 61dcaaec50363056a9ca9811
+        eventTitle:
+          description: Representa o título do evento
+          type: string
+          example: noite da farra
+        eventDescription:
+          description: Representa a descrição do evento
+          type: string
+          example: Festa alusivo aos que gostam de farra
+        eventOrganizers:
+          description: Representa o organizador do evento
+          type: string
+          example: os compadres
+        eventPrice:
+          description: Preço do evento
+          type: string
+          example: "2000"
+        eventStartDate:
+          description: Data de início do evento
+          type: string
+          example: 01/03/2022 00:00:00
+        eventFinishDate:
+          description: Data de término do evento
+          type: string
+          example: 02/03/2022 00:00:00
+        eventContact:
+          allOf:
+          - $ref: '#/components/schemas/CelphoneTO'
+          - description: São os contactos dos organizadores do evento
+        eventAdress:
+          allOf:
+          - $ref: '#/components/schemas/AdressTO'
+          - description: Define o enedereço aonde vai ocorrer o evento
+        eventOwner:
+          description: É o proprietário do evento
+          type: string
+          example: Kangamba
+    NewEventRequestTO:
+      required:
+      - eventTitle
+      - eventDescription
+      - eventOrganizers
+      - eventPrice
+      - eventStartDate
+      - eventFinishDate
+      - eventOwner
+      type: object
+      properties:
+        eventTitle:
+          description: Representa o título do evento
+          minLength: 1
+          type: string
+          example: noite da farra
+          nullable: false
+        eventDescription:
+          description: Representa a descrição do evento
+          minLength: 1
+          type: string
+          example: Festa alusivo aos que gostam de farra
+          nullable: false
+        eventOrganizers:
+          description: Representa o organizador do evento
+          minLength: 1
+          type: string
+          example: os compadres
+          nullable: false
+        eventPrice:
+          description: Preço do evento
+          minLength: 1
+          type: string
+          example: "2000"
+          nullable: false
+        eventStartDate:
+          description: Data de início do evento
+          minLength: 1
+          type: string
+          example: 01/03/2022 00:00:00
+          nullable: false
+        eventFinishDate:
+          description: Data de término do evento
+          minLength: 1
+          type: string
+          example: 02/03/2022 00:00:00
+          nullable: false
+        eventContact:
+          allOf:
+          - $ref: '#/components/schemas/CelphoneTO'
+          - description: São os contactos dos organizadores do evento
+        eventAdress:
+          allOf:
+          - $ref: '#/components/schemas/AdressTO'
+          - description: Define o enedereço aonde vai ocorrer o evento
+        eventOwner:
+          description: É o nome da pessoa que cadastrou o evento no sistema
+          minLength: 1
+          type: string
+          example: João Armando José
+          nullable: false
+    UpdateEventRequestTO:
+      required:
+      - eventTitle
+      - eventDescription
+      - eventOrganizers
+      - eventPrice
+      - eventStartDate
+      - eventFinishDate
+      - eventOwner
+      type: object
+      properties:
+        eventTitle:
+          description: Representa o título do evento
+          minLength: 1
+          type: string
+          example: os compadres
+          nullable: false
+        eventDescription:
+          description: Representa a descrição do evento
+          minLength: 1
+          type: string
+          example: Festa alusivo aos amigos do musikada
+          nullable: false
+        eventOrganizers:
+          description: Representa um email válido do organizador do evento
+          minLength: 1
+          type: string
+          example: exemplo@gmail.com
+          nullable: false
+        eventPrice:
+          description: Preço do evento
+          minLength: 1
+          type: string
+          example: "2000"
+          nullable: false
+        eventStartDate:
+          description: Data de início do evento
+          minLength: 1
+          type: string
+          example: 01/03/2022 00:00:00
+          nullable: false
+        eventFinishDate:
+          description: Data de término do evento
+          minLength: 1
+          type: string
+          example: 02/03/2022 00:00:00
+          nullable: false
+        eventContact:
+          allOf:
+          - $ref: '#/components/schemas/CelphoneTO'
+          - description: São os contactos dos organizadores do evento
+        eventAdress:
+          allOf:
+          - $ref: '#/components/schemas/AdressTO'
+          - description: Define o enedereço aonde vai ocorrer o evento
+        eventOwner:
+          description: É o proprietário do evento
+          minLength: 1
+          type: string
+          example: Kangamba
+          nullable: false
