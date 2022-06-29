@@ -27,7 +27,9 @@
                   <em> Olá, {{ User }}</em>
                 </template>
                 <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
-                <a @click="logout">Logout</a>
+                <!-- <a @click="logout">Logout</a> -->
+                <b-nav-item>Perfil</b-nav-item> 
+                <b-nav-item @click="logout">Logout</b-nav-item>
               </b-nav-item-dropdown>
             </div>        
           </div>

@@ -9,11 +9,13 @@ import router from './router';
 //import store from '@/store'
 import store from './store/index'
 import axios from "axios";
-
+ 
 axios.defaults.withCredentials = false
-axios.defaults.baseURL = 'https://gabbyblog.herokuapp.com/';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.post['Access-Control-Allow-Origin'] =  '*';
+//axios.defaults.baseURL = 'https://gabbyblog.herokuapp.com/';
+axios.defaults.baseURL = 'https://musikada-user-heroku.herokuapp.com/'
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+//axios.defaults.headers.post['Access-Control-Allow-Origin'] =  '*';
 
 import VueCarousel from 'vue-carousel';
 Vue.use(VueCarousel);

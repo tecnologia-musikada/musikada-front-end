@@ -14,7 +14,9 @@
           <label for="password">Password:</label>
           <input type="password" name="password" v-model="form.password" />
         </div>
-        <button type="submit">Submit</button>
+        <div class="botao">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
     <p v-if="showError" id="error">Username already exists</p>
@@ -62,16 +64,21 @@ label {
 }
 
 button[type="submit"] {
-  background-color: #4caf50;
+  background-color: #f0833b ;
   color: white;
   padding: 12px 20px;
   cursor: pointer;
   border-radius: 30px;
+  margin-top: 30px;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
+.botao {
+  padding-left: 150px;
 }
+ 
+/* button[type="submit"]:hover {
+  background-color: #45a049;
+} */
 
 input {
   margin: 5px;

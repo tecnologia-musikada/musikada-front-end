@@ -25,8 +25,10 @@
                 <template #button-content>
                   <em> Olá, {{ User }}</em>
                 </template>
-                <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
-                <a @click="logout">Logout</a>
+                <!-- <b-dropdown-item href="logout">Profile</b-dropdown-item> -->
+                <b-nav-item>Perfil</b-nav-item> 
+                <b-nav-item @click="logout">Logout</b-nav-item> 
+                <!-- <a @click="logout"> Logout</a> -->
               </b-nav-item-dropdown>
             </div>        
           </div>

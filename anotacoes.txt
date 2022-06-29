@@ -556,7 +556,7 @@ export default {
   text-align: center;
   justify-items: center; 
 }
-</style>
+</style> 
 
 
 
