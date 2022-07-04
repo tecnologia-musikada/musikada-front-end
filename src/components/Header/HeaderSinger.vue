@@ -14,7 +14,6 @@
           <b-nav-item @click="gotToCiphers">Enviar cifras</b-nav-item> 
           <b-nav-item @click="gotToEvents">Anunciar evento</b-nav-item>
           <b-nav-item @click="gotToAbout">Sobre nós</b-nav-item> 
-          <b-nav-item @click="gotToPosts">Posts</b-nav-item> 
           <b-nav-item></b-nav-item>
         </b-navbar-nav>
 

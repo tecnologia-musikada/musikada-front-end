@@ -1,8 +1,7 @@
 <template>
   <div>
     <b-card no-body>
-      <b-tabs card>
-        
+      <b-tabs card>        
         <!-- Login -->
         <b-tab title="Login" active>
           <Login />     
@@ -22,7 +21,7 @@
 import Register from "../components/Registers/Register.vue"
 import Login from "../components/Login/Login.vue"
   export default {
-    components:
+    components: 
     {
         Register, Login
     },
