@@ -26,6 +26,7 @@ const actions = {
     UserForm.append('email', form.email)
     UserForm.append('password', form.password)
     await dispatch('LogIn', UserForm)
+    
   },
 
   async LogIn({commit}, user) {
