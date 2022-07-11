@@ -6040,9 +6040,9 @@
     "json5" "^1.0.1"
 
 "loader-utils@^2.0.0":
-  "integrity" "sha512-rP4F0h2RaWSvPEkD7BLDFQnvSf+nK+wr3ESUjNTyAGobqrijmW92zc+SO6d4p4B1wh7+B/Jg1mkQe5NYUEHtHQ=="
-  "resolved" "https://registry.npmjs.org/loader-utils/-/loader-utils-2.0.0.tgz"
-  "version" "2.0.0"
+  "integrity" "sha512-TM57VeHptv569d/GKh6TAYdzKblwDNiumOdkFnejjD0XwTH87K90w3O7AiJRqdQoXygvi1VQTJTLGhJl7WqA7A=="
+  "resolved" "https://registry.npmjs.org/loader-utils/-/loader-utils-2.0.2.tgz"
+  "version" "2.0.2"
   dependencies:
     "big.js" "^5.2.2"
     "emojis-list" "^3.0.0"
@@ -6125,7 +6125,7 @@
   "resolved" "https://registry.npmjs.org/loglevel/-/loglevel-1.7.1.tgz"
   "version" "1.7.1"
 
-"loose-envify@^1.1.0", "loose-envify@^1.2.0", "loose-envify@^1.4.0":
+"loose-envify@^1.2.0", "loose-envify@^1.4.0":
   "integrity" "sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q=="
   "resolved" "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz"
   "version" "1.4.0"
@@ -7919,14 +7919,6 @@
   "integrity" "sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ=="
   "resolved" "https://registry.npmjs.org/react-side-effect/-/react-side-effect-2.1.1.tgz"
   "version" "2.1.1"
-
-"react@^16.3.0 || ^17.0.0", "react@>=16.3.0":
-  "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
-  "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
-  "version" "17.0.2"
-  dependencies:
-    "loose-envify" "^1.1.0"
-    "object-assign" "^4.1.1"
 
 "read-cache@^1.0.0":
   "integrity" "sha1-5mTvMRYRZsl1HNvo28+GtftY93Q="
@@ -9733,9 +9725,9 @@
   "version" "2.4.5"
 
 "vue-loader-v16@npm:vue-loader@^16.1.0":
-  "integrity" "sha512-WXh+7AgFxGTgb5QAkQtFeUcHNIEq3PGVQ8WskY5ZiFbWBkOwcCPRs4w/2tVyTbh2q6TVRlO3xfvIukUtjsu62A=="
-  "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-16.5.0.tgz"
-  "version" "16.5.0"
+  "integrity" "sha512-7vKN45IxsKxe5GcVCbc2qFU5aWzyiLrYJyUuMz4BQLKctCj/fmCa0w6fGiiQ2cLFetNcek1ppGJQDCup0c1hpA=="
+  "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-16.8.3.tgz"
+  "version" "16.8.3"
   dependencies:
     "chalk" "^4.1.0"
     "hash-sum" "^2.0.0"
@@ -9972,7 +9964,7 @@
     "source-list-map" "^2.0.0"
     "source-map" "~0.6.1"
 
-"webpack@^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^3.0.0 || ^4.1.0 || ^5.0.0-0", "webpack@^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.1.0 || ^5.0.0-0", "webpack@^4.36.0 || ^5.0.0", "webpack@^4.4.0", "webpack@>=2", "webpack@>=2.0.0 <5.0.0", "webpack@>=4.0.0":
+"webpack@^1.0.0 || ^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^2.0.0 || ^3.0.0 || ^4.0.0", "webpack@^3.0.0 || ^4.1.0 || ^5.0.0-0", "webpack@^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.36.0 || ^5.0.0", "webpack@^4.4.0", "webpack@>=2", "webpack@>=2.0.0 <5.0.0", "webpack@>=4.0.0":
   "integrity" "sha512-6jJuJjg8znb/xRItk7bkT0+Q7AHCYjjFnvKIWQPkNIOyRqoCGvkOs0ipeQzrqz4l5FtN5ZI/ukEHroeX/o1/5Q=="
   "resolved" "https://registry.npmjs.org/webpack/-/webpack-4.46.0.tgz"
   "version" "4.46.0"
