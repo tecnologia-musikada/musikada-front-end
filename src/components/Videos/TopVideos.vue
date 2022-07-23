@@ -3,7 +3,7 @@
     <h6>Covers</h6>
 
     <b-row class="video">
-      <b-col>
+      <b-col> 
         <carousel
             :autoplayHoverPause='true'
             :navigationEnabled="true"

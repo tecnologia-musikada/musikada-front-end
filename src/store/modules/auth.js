@@ -3,6 +3,7 @@ import axios from "axios";
 const state = {
   user: null,
   posts: null,
+  showModal: false
 
   
 };
@@ -13,6 +14,9 @@ const getters = {
   isAuthenticated: (state) => !!state.user,
   StatePosts: (state) => state.posts,
   StateUser: (state) => state.user,
+  showModal: (state) => {
+    return state.showModal
+  }
   
 };
 
@@ -63,6 +67,10 @@ const mutations = {
   logout(state, user) {
     state.user = user;
   },
+
+  toggleModal (state) {
+    state.showModal = !state.showModal
+  }
 };
 
 export default {

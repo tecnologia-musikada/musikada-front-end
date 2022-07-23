@@ -1,10 +1,11 @@
 <template>
-  <div>
+  <!-- <div> -->
+  <transition> 
     <b-card no-body>
       <b-tabs card>        
         <!-- Login -->
         <b-tab title="Login" active>
-          <Login />     
+          <Login /> 
         </b-tab>
 
           <!-- Cadastro -->
@@ -13,7 +14,8 @@
         </b-tab>
       </b-tabs>
     </b-card>
-  </div>
+  </transition>
+  <!-- </div> -->
 </template>
 
 <script>

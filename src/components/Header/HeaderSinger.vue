@@ -8,39 +8,84 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav class="menu">
-        <b-navbar-nav>
+        <b-navbar-nav v-if="isLoggedIn">
+            <b-nav-item @click="gotToHome">Página inicial</b-nav-item>
+            <b-nav-item @click="gotToSinger">Cantor</b-nav-item>
+            <b-nav-item @click="gotToCiphers">Enviar cifras</b-nav-item> 
+            <b-nav-item @click="gotToEvents">Anunciar evento</b-nav-item>
+            <b-nav-item @click="gotToAbout">Sobre nós</b-nav-item> 
+            <b-nav-item @click="gotToPosts">Posts</b-nav-item> 
+            <b-nav-item></b-nav-item>
+            <div>
+              <div class="user">
+                <b-nav-item-dropdown right>
+                  <template #button-content>
+                    <em> Olá, {{ User }}</em>
+                  </template>
+                  <!-- <b-dropdown-item href="logout">Profile</b-dropdown-item> -->
+                  <b-nav-item>Perfil</b-nav-item> 
+                  <b-nav-item @click="logout">Logout</b-nav-item> 
+                  <!-- <a @click="logout"> Logout</a> -->
+                </b-nav-item-dropdown>
+              </div>        
+            </div>
+        </b-navbar-nav> 
+
+        <b-navbar-nav v-else>
+          <b-nav-item @click="gotToHome">Página inicial</b-nav-item>
+          <b-nav-item @click="gotToSinger">Cantor</b-nav-item>
+          <b-nav-item @click="gotToCiphers">Enviar cifras</b-nav-item> 
+          <b-nav-item @click="modalShow = !modalShow">Anunciar evento</b-nav-item>
+          <b-modal v-model="modalShow">
+            <Modal />
+          </b-modal>
+          <b-nav-item @click="gotToAbout">Sobre nós</b-nav-item> 
+          <b-nav-item @click="modalShow = !modalShow">Posts</b-nav-item> 
+          <b-modal v-model="modalShow">
+            <Modal />
+          </b-modal>
+
+          <div>
+            <b-nav-item class="enter" @click="modalShow = !modalShow">Entrar</b-nav-item>
+            <b-modal v-model="modalShow">
+              <Modal />
+            </b-modal>
+          </div>
+        </b-navbar-nav>
+        <!-- <b-navbar-nav>
           <b-nav-item @click="gotToHome">Página inicial</b-nav-item>
           <b-nav-item @click="gotToSinger">Cantor</b-nav-item>
           <b-nav-item @click="gotToCiphers">Enviar cifras</b-nav-item> 
           <b-nav-item @click="gotToEvents">Anunciar evento</b-nav-item>
           <b-nav-item @click="gotToAbout">Sobre nós</b-nav-item> 
+          <b-nav-item @click="gotToPosts">Posts</b-nav-item> 
           <b-nav-item></b-nav-item>
-        </b-navbar-nav>
+        </b-navbar-nav> -->
 
-        <b-navbar-nav v-if="isLoggedIn" class="ml-auto" text-variant="white">
+        <!-- <b-navbar-nav v-if="isLoggedIn" class="ml-auto" text-variant="white">
           <div>
             <div class="user">
               <b-nav-item-dropdown right>
                 <template #button-content>
                   <em> Olá, {{ User }}</em>
-                </template>
+                </template> -->
                 <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
                 <!-- <a @click="logout">Logout</a> -->
-                <b-nav-item>Perfil</b-nav-item> 
+                <!-- <b-nav-item>Perfil</b-nav-item> 
                 <b-nav-item @click="logout">Logout</b-nav-item> 
               </b-nav-item-dropdown>
             </div>        
-          </div>
+          </div> 
         </b-navbar-nav> 
 
-        <b-navbar-nav v-else class="ml-auto" text-variant="white">
+        <b-navbar-nav v-else class="ml-auto" text-variant="white"> 
           <div>
             <b-nav-item @click="modalShow = !modalShow">Entrar</b-nav-item>
           <b-modal v-model="modalShow">
             <Modal />
           </b-modal>
           </div>
-        </b-navbar-nav>
+        </b-navbar-nav> -->
 
         
         <!-- <b-navbar-nav v-if="logado == false" class="ml-auto" text-variant="white">
@@ -253,5 +298,16 @@ em {
   justify-content: left;
   align-items: left;
   flex-direction: row;
+}
+
+.enter{
+  /* justify-content: left; */
+  /* align-items: left; */
+ /*  margin-left: 100px;
+  margin-top: 10px; */
+ /*  display: flex; */
+  margin-left: 500px; 
+  justify-content: right;
+  align-items: right;
 }
 </style>

@@ -14,6 +14,24 @@ const routes = [
             import ('../views/Home.vue')
     },
     {
+      path: '/header',
+      name: 'Header',
+      component: () =>
+          import ('../components/Header/HeaderSinger.vue'),
+      children: [
+        {
+          path: '/modal',
+          name: 'Modal',
+          
+          component: () => import ('../views/Modal'),
+        
+          meta: {
+            showModal: true
+          }
+        }
+      ],
+    },
+    {
         path: '/singers',
         name: 'SingerView',
         component: () => import ('../views/SingerView.vue')
@@ -39,11 +57,11 @@ const routes = [
         name: "Login",
         component: () => import ('../views/Login.vue')
     }, */
-     {   
+     /* {   
         path: '/modal',
         name: "Modal",
         component: () => import ('../views/Modal')
-    }, 
+    },  */
     {
         path: '/eventoexpandido',
         name: "EventoExpandido",
@@ -57,6 +75,7 @@ const routes = [
         meta: {requiresAuth: true},
     },
     
+    
 ]
 const router = new VueRouter({
     mode: 'history',
@@ -67,17 +86,21 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
-      if (store.getters.isAuthenticated) {
-        next();
+      // this route requires auth, check if logged in
+      // if not, redirect to login page.
+      if (!store.getters.isLoggedIn) {  // if (store.getters.isAuthenticated)
+        next("/");
         return;
       }
-      next("/modal");
+      else {
+        next();  // go to wherever I'm going
+      }
     } else {
-      next();
+      next(); // does not require auth, make sure to always call next()!
     }
   });
   
-  router.beforeEach((to, from, next) => {
+  /*router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.guest)) {
       if (store.getters.isAuthenticated) {
         next("/posts");
@@ -111,6 +134,6 @@ router.beforeEach((to, from, next) => {
     } else {
       next();
     }
-  });
+  });*/
 
 export default router;
